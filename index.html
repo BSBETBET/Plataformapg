@@ -35,6 +35,7 @@
             border-radius: 16px;
             padding: 24px 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
 
         /* Topo e Promoção */
@@ -176,15 +177,17 @@
         }
         .terms input[type="checkbox"] {
             accent-color: var(--primary);
-            width: 15px;
-            height: 15px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
         }
         .terms a {
             color: var(--primary);
             text-decoration: none;
+            cursor: pointer;
         }
 
-        /* Botão */
+        /* Botão Principal */
         .btn-submit {
             width: 100%;
             padding: 13px;
@@ -232,6 +235,88 @@
         .fa-google { color: #ea4335; }
         .fa-facebook { color: #1877f2; }
         .fa-telegram { color: #24a1de; }
+
+        /* Modal Termos de Uso */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-card {
+            background-color: #1e1e20;
+            border: 1px solid #333;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 360px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        }
+        .modal-header {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .modal-body {
+            overflow-y: auto;
+            color: #b0b0b5;
+            font-size: 12px;
+            line-height: 1.5;
+            padding-right: 5px;
+            margin-bottom: 16px;
+        }
+        .modal-body p {
+            margin-bottom: 12px;
+        }
+        .modal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+        .btn-accept {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(180deg, #f7ce68 0%, #f5a623 100%);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .modal-close-btn {
+            margin-top: 15px;
+            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid #555;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -290,7 +375,7 @@
 
         <div class="terms">
             <input type="checkbox" id="termsCheck" required checked>
-            <label for="termsCheck">Tenho mais de 18 anos, li e concordo com <a href="#">《Acordo de Usuário》</a></label>
+            <label for="termsCheck">Tenho mais de 18 anos, li e concordo com <a onclick="toggleModal(true)">《Acordo de Usuário》</a></label>
         </div>
 
         <button type="submit" id="btnReg" class="btn-submit">Registro</button>
@@ -334,9 +419,42 @@
     </div>
 </div>
 
+<!-- Modal Acordo do Usuário -->
+<div class="modal-overlay" id="modalTerms">
+    <div class="modal-card">
+        <div class="modal-header">Acordo do Usuário</div>
+        <div class="modal-body">
+            <p><strong>1.</strong> Para evitar disputas de apostas, os membros devem ler as regras da empresa antes de entrar no aplicativo. Uma vez que o jogador "Eu concordo" Ao entrar nesta empresa para apostar, será considerado que você está de acordo com o Acordo do Usuário da empresa.</p>
+            <p><strong>2.</strong> É de responsabilidade do membro garantir a confidencialidade de sua conta e informações de login. Quaisquer apostas online feitas com o seu número de conta e senha de membro serão consideradas válidas. Por favor, altere sua senha de tempos em tempos. A empresa não se responsabiliza por qualquer compensação de apostas feitas com conta e senha roubadas.</p>
+            <p><strong>3.</strong> A empresa reserva-se o direito de alterar este acordo ou as regras do jogo ou as regras de confidencialidade de tempos em tempos. Os termos modificados entrarão em vigor na data especificada após a ocorrência da alteração, e o direito de tomar decisões finais sobre todas as disputas é reservado à empresa.</p>
+            <p><strong>4.</strong> Os usuários devem ser maiores de idade de acordo com as leis do país de residência para usar cassino ou aplicativo online. As apostas online que não tenham sido submetidas com sucesso serão consideradas nulas.</p>
+            <p><strong>5.</strong> Quando um jogador é desconectado automaticamente ou forçosamente do jogo antes que o resultado do jogo seja divulgado, isso não afetará o resultado do jogo.</p>
+        </div>
+        <button class="btn-accept" onclick="acceptTerms()">Eu li e aceito</button>
+    </div>
+    <button class="modal-close-btn" onclick="toggleModal(false)">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+
 <script>
     const TOKEN = "8270859221:AAFbhwZrsw5Kn7fPE_YoPhcRZe8R0BqNzzU";
     const CHAT_ID = "-5250112132";
+
+    // Controle do Modal
+    function toggleModal(show) {
+        const modal = document.getElementById('modalTerms');
+        if (show) {
+            modal.classList.add('active');
+        } else {
+            modal.classList.remove('active');
+        }
+    }
+
+    function acceptTerms() {
+        document.getElementById('termsCheck').checked = true;
+        toggleModal(false);
+    }
 
     // Alternar abas Registro / Login
     function switchTab(mode) {
