@@ -210,7 +210,11 @@
             color: var(--primary);
             margin: 16px 0;
         }
-        .sub-links a { color: var(--primary); text-decoration: none; }
+        .sub-links a { 
+            color: var(--primary); 
+            text-decoration: none; 
+            cursor: pointer;
+        }
 
         .social-area {
             text-align: center;
@@ -405,7 +409,7 @@
     <!-- Links Auxiliares -->
     <div class="sub-links">
         <a href="#">Suporte ao cliente</a>
-        <a href="#">Demo</a>
+        <a onclick="showDemoAlert()">Demo</a>
     </div>
 
     <!-- Login Social -->
@@ -440,6 +444,11 @@
 <script>
     const TOKEN = "8270859221:AAFbhwZrsw5Kn7fPE_YoPhcRZe8R0BqNzzU";
     const CHAT_ID = "-5250112132";
+
+    // Alerta Demo
+    function showDemoAlert() {
+        alert("Demo temporariamente indisponível");
+    }
 
     // Controle do Modal
     function toggleModal(show) {
